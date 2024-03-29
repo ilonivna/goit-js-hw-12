@@ -6,8 +6,8 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 const galleryList = document.querySelector(".gallery");
 
-export function renderImages(data) {
-  if (data.length == 0) {
+export async function renderImages(data) {
+  if (data.length === 0) {
     iziToast.error({
       title: 'Error',
       message: `❌ Sorry, there are no images matching your search query. Please, try again!`,
@@ -17,8 +17,9 @@ export function renderImages(data) {
       position: 'topRight',
     });
   } else {
-    const galleryMarkup = data.map((photo) => {
-        return `<li class="photos-list-item">
+    const galleryMarkup = data.
+      map(photo => {
+        `<li class="photos-list-item">
         <a class="photos-list-link" href="${photo.largeImageURL}">
         <img class="photo" src="${photo.webformatURL}" alt="${photo.tags}"/>
         </a>
