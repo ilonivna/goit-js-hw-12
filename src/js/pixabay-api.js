@@ -1,26 +1,24 @@
-const input = document.querySelector("input");
-const query = input.value.trim();
-const encodedQuery = encodeURIComponent(query);
+import axios from "axios";
 
-export function fetchImages(query) {
-    const searchParams = new URLSearchParams({
-        key: "43047953-84179c8300fd9f33658a206cf",
-        q: query,
-        image_type: "photo",
-        orientation: "horizontal",
-        safesearch: "true",
-
-    });
+export async function fetchImages(query, page) {
     
-    const url = `https://pixabay.com/api/?${searchParams}`;
+    const url = 'https://pixabay.com/api/';
 
-    return fetch(url).then(response => {
-        if (!response.ok) {
-            throw new Error(response.status);
+    const response = await axios.get(url, {
+        params: {
+            key: "43047953-84179c8300fd9f33658a206cf",
+            q: query,
+            image_type: "photo",
+            orientation: "horizontal",
+            safesearch: "true",
+            page,
+            per_page: 15,
         }
-        return response.json();
-    });
+    })
+    const searchResult = response.data;
+    return searchResult;
 }
+
 
 
 

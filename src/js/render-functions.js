@@ -4,10 +4,12 @@ import "izitoast/dist/css/iziToast.min.css";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
+const backToTop = document.querySelector(".back-to-top");
 const galleryList = document.querySelector(".gallery");
 
 export function renderImages(data) {
   if (data.length == 0) {
+    
     iziToast.error({
       title: 'Error',
       message: `❌ Sorry, there are no images matching your search query. Please, try again!`,
@@ -16,6 +18,7 @@ export function renderImages(data) {
       color: '#EF4040',
       position: 'topRight',
     });
+    backToTop.classList.add("is-hidden");
   } else {
     const galleryMarkup = data.map((photo) => {
         return `<li class="photos-list-item">

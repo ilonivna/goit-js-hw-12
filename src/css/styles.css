@@ -7,9 +7,8 @@
   line-height: 24px;
   font-weight: 400;
 
-
-  color: #242424;
-  background-color: seashell;
+background-color: #ffffff;
+  background-image: linear-gradient(to right, #ffffff 0%, #4E75FF 74%);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,9 +17,11 @@
   -webkit-text-size-adjust: 100%;
 }
 
+
 .gallery {
   display: flex;
   gap: 16px;
+  justify-content: center;
   flex-wrap: wrap;
   margin-top: 20px;
   margin-left: 20px;
@@ -42,9 +43,14 @@ gap: 12px;
 
 form {
   margin-top: 60px;
-  margin-left: 200px;
+
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: center;
 }
 input {
+  background-color: transparent;
   width: 272px;
   height: 40px;
   padding: 8px, 16px;
@@ -54,16 +60,54 @@ input:active, input:hover {
   border-color: #4E75FF;
 }
 
-button {
-width: 59px;
-height: 46px;
-border-radius: 8px;
-background-color: #4E75FF;
-padding: 8px, 16px;
-border: none;
-color: #FFFFFF;
-font-size: 14px;
+.button {
+  align-items: center;
+  background-image: linear-gradient(144deg, #4E75FF, #5B42F3 50%, #00DDEB);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  height: 46px;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 10px 12px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
 }
+
+.button:active,
+.button:hover {
+  outline: 0;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .button {
+    font-size: 24px;
+    min-width: 196px;
+  }
+}
+
+  
+
+.load-more-btn {
+  
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
 
 .loader {
   width: 160px;
@@ -135,3 +179,47 @@ font-size: 14px;
     transform: translateX(0px);
   }
 }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.gradient {
+  --size: 250px;
+  --speed: 50s;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+
+  width: var(--size);
+  height: var(--size);
+  filter: blur(calc(var(--size) / 5));
+  background-image: linear-gradient(hsl(158, 82, 57, 85%), hsl(252, 82, 57));
+  animation: rotate var(--speed) var(--easing) alternate infinite;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+@media (min-width: 720px) {
+  .gradient {
+    --size: 500px;
+  }
+}
+
+.back-to-top {
+  --offset: 50px;
+  background-image: linear-gradient(144deg, #4E75FF, #5B42F3 50%, #00DDEB);
+  opacity: 0.7;
+  border-radius: 10px;
+  position: sticky;
+  bottom: 20px;
+  margin-right: 10px;
+  place-self: end;
+  margin-top: calc(100vh + var(--offset));
+
+}
+
+
+
