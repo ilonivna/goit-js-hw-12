@@ -7,9 +7,17 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 const backToTop = document.querySelector(".back-to-top");
 const galleryList = document.querySelector(".gallery");
 
+function showBackToTop() {
+    backToTop.classList.remove("is-hidden");
+}
+
+function hideBackToTop() {
+    backToTop.classList.add("is-hidden");
+}
+
 export function renderImages(data) {
   if (data.length == 0) {
-    
+    hideBackToTop();
     iziToast.error({
       title: 'Error',
       message: `❌ Sorry, there are no images matching your search query. Please, try again!`,
@@ -18,8 +26,9 @@ export function renderImages(data) {
       color: '#EF4040',
       position: 'topRight',
     });
-    backToTop.classList.add("is-hidden");
+    
   } else {
+    showBackToTop()
     const galleryMarkup = data.map((photo) => {
         return `<li class="photos-list-item">
         <a class="photos-list-link" href="${photo.largeImageURL}">

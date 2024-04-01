@@ -119,6 +119,7 @@ input:active, input:hover {
 
 .is-hidden {
   display: none;
+  pointer-events: none;
 }
 
 .loader:after {
@@ -219,6 +220,14 @@ input:active, input:hover {
   place-self: end;
   margin-top: calc(100vh + var(--offset));
 
+}
+
+.thank-you-text {
+  text-align: left;
+  font-family: "Sofia", cursive;
+    font-weight: 400;
+    font-size: 20px;
+    font-style: normal;
 }
 
 

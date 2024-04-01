@@ -8,12 +8,11 @@ import { renderImages } from "./js/render-functions.js";
 
 
 // ======================================
-
+const backToTop = document.querySelector(".back-to-top");
 const galleryList = document.querySelector(".gallery");
 const form = document.querySelector("form");
 const loader = document.querySelector('.loader');
 const loadMoreBtn = document.querySelector(".load-more-btn");
-const backToTop = document.querySelector(".back-to-top");
 
 
 let page = 1;
@@ -54,10 +53,6 @@ function scroll() {
     });
 }
 
-function showBackToTop() {
-    backToTop.classList.remove("is-hidden");
-}
-
 // ========================================
 
 
@@ -86,9 +81,7 @@ async function onFormSubmit(event) {
         const data = await fetchImages(query, page);
         totalPages = Math.ceil(data.totalHits / perPage);
         renderImages(data.hits);
-        showBackToTop();
     } catch (err) {
-        
         console.log(err);
         iziToast.error({
                     title: 'Error',
@@ -108,6 +101,18 @@ async function onLoadMoreClick() {
     try {
         const data = await fetchImages(query, page);
         renderImages(data.hits);
+        if (page >= totalPages) {
+            hideLoadMore();
+            const thankYouMarkup = `<p class="thank-you-text">Thank you for <br> using our website!</p>`;
+            backToTop.insertAdjacentHTML("beforeend", thankYouMarkup);
+
+            iziToast.warning({
+                title: 'End of collection',
+                color: "blue",
+            message: ` Sorry, there are no more images matching your query `,
+            position: 'topRight',
+            })
+        }
     } catch (err) {
         console.log(err);
         iziToast.error({
